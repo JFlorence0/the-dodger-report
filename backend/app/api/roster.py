@@ -8,7 +8,7 @@ from ..db.models import Player
 from ..db.schemas import Player as PlayerSchema, PlayerCreate, PlayerUpdate
 from ..services.player_service import PlayerService
 
-router = APIRouter()
+router = APIRouter(tags=["roster"])
 
 @router.get("/roster", response_model=List[PlayerSchema], summary="Get Dodgers Roster")
 async def get_roster(
@@ -78,3 +78,49 @@ async def delete_player(player_id: int, db: Session = Depends(get_db)):
             detail=f"Player with ID {player_id} not found"
         )
     return None
+
+@router.get("/roster-sync-status", summary="Check Roster Sync Status")
+async def check_sync_status(db: Session = Depends(get_db)):
+    """
+    Check if the roster needs to be synced (more than 24 hours since last update).
+    """
+    player_service = PlayerService(db)
+    should_sync = player_service.should_sync_roster()
+    player_count = db.query(Player).count()
+    
+    # Get last update time
+    latest_player = db.query(Player).order_by(Player.last_updated.desc()).first()
+    last_updated = latest_player.last_updated if latest_player else None
+    
+    return {
+        "should_sync": should_sync,
+        "player_count": player_count,
+        "last_updated": last_updated,
+        "message": "Roster needs sync" if should_sync else "Roster is up to date"
+    }
+
+@router.get("/roster-espn-test", summary="Test ESPN Parsing (No DB Changes)")
+async def test_espn_parsing(db: Session = Depends(get_db)):
+    """
+    Test the ESPN parsing to see what data we can extract (no database changes).
+    """
+    player_service = PlayerService(db)
+    players = player_service.sync_roster_from_espn()
+    
+    return {
+        "message": "ESPN parsing test completed",
+        "players_found": len(players),
+        "players": players,  # Show all players
+        "note": "This is test data only - no database changes were made"
+    }
+
+@router.post("/roster-espn-sync", summary="Sync ESPN Roster to Database")
+async def sync_espn_roster(db: Session = Depends(get_db)):
+    """
+    Sync the current Dodgers roster from ESPN to the database.
+    This will only sync if the roster hasn't been updated in the last 24 hours.
+    """
+    player_service = PlayerService(db)
+    result = player_service.sync_roster_to_database()
+    
+    return result

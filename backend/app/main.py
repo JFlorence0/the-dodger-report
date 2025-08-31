@@ -34,6 +34,9 @@ async def root():
         "version": "1.0.0",
         "endpoints": {
             "roster": "/api/v1/roster",
+            "roster_sync_status": "/api/v1/roster-sync-status",
+            "roster_espn_test": "/api/v1/roster-espn-test",
+            "roster_espn_sync": "/api/v1/roster-espn-sync",
             "docs": "/docs"
         }
     }

@@ -95,7 +95,7 @@ curl http://localhost:8000/api/v1/roster/1
 | id | Integer | Primary key |
 | name | String | Player's full name |
 | position | String | Fielding position |
-| jersey_number | Integer | Jersey number |
+| uniform_number | Integer | Jersey number |
 | height | String | Height (e.g., "6'2\"") |
 | weight | Integer | Weight in pounds |
 | birth_date | Date | Date of birth |

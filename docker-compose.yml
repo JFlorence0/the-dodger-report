@@ -13,8 +13,6 @@ services:
     volumes:
       # Mount the backend directory for development (hot reload)
       - ./backend:/app
-      # Persist database between container restarts
-      - dodger-data:/app
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
@@ -45,9 +43,7 @@ services:
     networks:
       - dodger-network
 
-volumes:
-  dodger-data:
-    driver: local
+volumes: {}
 
 networks:
   dodger-network:
