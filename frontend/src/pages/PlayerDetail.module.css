@@ -1,0 +1,294 @@
+.playerDetail {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Header */
+.header {
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #e9ecef;
+}
+
+.backButton {
+  background: #6c757d;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 20px;
+  transition: background-color 0.2s;
+}
+
+.backButton:hover {
+  background: #5a6268;
+}
+
+.playerHeader {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.jerseyNumber {
+  font-size: 48px;
+  font-weight: 700;
+  color: #007bff;
+  text-align: center;
+  min-width: 80px;
+  margin-top: 5px;
+}
+
+.playerInfo h1 {
+  margin: 0 0 8px 0;
+  font-size: 36px;
+  font-weight: 700;
+  color: #212529;
+}
+
+.primaryInfo {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.position {
+  font-size: 18px;
+  font-weight: 600;
+  color: #495057;
+  padding: 6px 12px;
+  background: #f8f9fa;
+  border-radius: 4px;
+}
+
+.statusBadge {
+  padding: 6px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.secondaryInfo {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  font-size: 14px;
+  color: #6c757d;
+  line-height: 1.4;
+}
+
+.team {
+  font-weight: 600;
+  color: #495057;
+}
+
+.separator {
+  color: #dee2e6;
+  font-weight: 300;
+}
+
+.batsThrows {
+  font-family: 'Courier New', monospace;
+  font-weight: 600;
+  color: #007bff;
+}
+
+.physical {
+  color: #6c757d;
+}
+
+.positions {
+  color: #6c757d;
+}
+
+.updated {
+  color: #6c757d;
+  font-style: italic;
+}
+
+.statusActive {
+  background: #d4edda;
+  color: #155724;
+}
+
+.statusInjured {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+.statusSuspended {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.statusDefault {
+  background: #e2e3e5;
+  color: #383d41;
+}
+
+/* Content Layout */
+.content {
+  display: flex;
+  flex-direction: column;
+}
+
+.mainSection {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 100%;
+}
+
+/* Placeholder Content */
+.placeholder {
+  background: white;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  padding: 40px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  text-align: center;
+}
+
+.placeholder h2 {
+  margin: 0 0 15px 0;
+  font-size: 24px;
+  font-weight: 600;
+  color: #212529;
+}
+
+.placeholder > p {
+  margin: 0 0 30px 0;
+  font-size: 16px;
+  color: #6c757d;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.placeholderGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.placeholderCard {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 6px;
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.placeholderCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.placeholderCard h3 {
+  margin: 0 0 10px 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #495057;
+}
+
+.placeholderCard p {
+  margin: 0;
+  font-size: 14px;
+  color: #6c757d;
+}
+
+/* Cards (keeping for future use) */
+.card {
+  background: white;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  padding: 24px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.card h2 {
+  margin: 0 0 20px 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: #212529;
+  border-bottom: 1px solid #e9ecef;
+  padding-bottom: 10px;
+}
+
+.card h3 {
+  margin: 0 0 15px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #212529;
+}
+
+
+
+
+
+/* Loading and Error States */
+.loading, .error {
+  text-align: center;
+  padding: 60px 20px;
+  color: #6c757d;
+}
+
+.spinner {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #007bff;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 20px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
+
+@media (max-width: 768px) {
+  .playerHeader {
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
+  }
+  
+  .jerseyNumber {
+    font-size: 36px;
+  }
+  
+  .playerInfo h1 {
+    font-size: 28px;
+  }
+  
+  .primaryInfo {
+    justify-content: center;
+  }
+  
+  .secondaryInfo {
+    justify-content: center;
+  }
+  
+  .placeholder {
+    padding: 20px;
+  }
+  
+  .placeholderGrid {
+    grid-template-columns: 1fr;
+  }
+}

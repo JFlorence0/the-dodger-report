@@ -1,0 +1,274 @@
+.rosterList {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Filters */
+.filters {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  border: 1px solid #e9ecef;
+}
+
+.searchBox {
+  margin-bottom: 15px;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.searchInput:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+.filterControls {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.filterSelect {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background: white;
+  font-size: 14px;
+  min-width: 120px;
+}
+
+.clearButton {
+  padding: 8px 16px;
+  background: #6c757d;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s;
+}
+
+.clearButton:hover {
+  background: #5a6268;
+}
+
+/* Results count */
+.resultsCount {
+  margin-bottom: 15px;
+  color: #6c757d;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Player list */
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.playerRow {
+  background: white;
+  border: 1px solid #e9ecef;
+  border-radius: 6px;
+  overflow: hidden;
+  transition: box-shadow 0.2s;
+}
+
+.playerRow:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.playerInfo {
+  display: grid;
+  grid-template-columns: 80px 200px 100px 150px 150px 100px 120px;
+  gap: 20px;
+  align-items: center;
+  padding: 16px 20px;
+}
+
+.jerseyNumber {
+  font-weight: 700;
+  font-size: 18px;
+  color: #007bff;
+  text-align: center;
+}
+
+.name {
+  font-weight: 600;
+  font-size: 16px;
+  color: #007bff;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.name:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+.clickIndicator {
+  font-size: 12px;
+  color: #6c757d;
+  margin-left: 4px;
+}
+
+.primaryPosition {
+  font-weight: 500;
+  color: #495057;
+  text-align: center;
+}
+
+.batsThrows {
+  font-size: 14px;
+  color: #6c757d;
+  font-family: 'Courier New', monospace;
+}
+
+.physical {
+  font-size: 14px;
+  color: #6c757d;
+}
+
+.status {
+  text-align: center;
+}
+
+.statusBadge {
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.statusActive {
+  background: #d4edda;
+  color: #155724;
+}
+
+.statusInjured {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+.statusSuspended {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.statusDefault {
+  background: #e2e3e5;
+  color: #383d41;
+}
+
+
+
+/* Actions */
+.actions {
+  display: flex;
+  justify-content: center;
+}
+
+.viewDetailsButton, .editButton {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.viewDetailsButton {
+  background: #28a745;
+  color: white;
+}
+
+.viewDetailsButton:hover {
+  background: #218838;
+}
+
+.editButton {
+  background: #007bff;
+  color: white;
+}
+
+.editButton:hover {
+  background: #0056b3;
+}
+
+/* Loading and error states */
+.loading, .error, .noResults {
+  text-align: center;
+  padding: 40px 20px;
+  color: #6c757d;
+}
+
+.spinner {
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid #007bff;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 20px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.retryButton {
+  padding: 10px 20px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-top: 15px;
+}
+
+.retryButton:hover {
+  background: #0056b3;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .playerInfo {
+    grid-template-columns: 60px 1fr 80px;
+    gap: 15px;
+  }
+  
+  .batsThrows, .physical, .status {
+    grid-column: 2;
+  }
+  
+  .actions {
+    grid-column: 3;
+  }
+  
+  .filterControls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .filterSelect {
+    width: 100%;
+  }
+}

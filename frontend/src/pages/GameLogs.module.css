@@ -1,0 +1,352 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.header h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #212529;
+  margin: 0 0 10px 0;
+}
+
+.header p {
+  font-size: 1.1rem;
+  color: #6c757d;
+  margin: 0;
+}
+
+.filters {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.filterBtn {
+  padding: 8px 16px;
+  border: 2px solid #e9ecef;
+  background: white;
+  color: #495057;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.filterBtn:hover {
+  border-color: #007bff;
+  color: #007bff;
+}
+
+.filterBtn.active {
+  background: #007bff;
+  border-color: #007bff;
+  color: white;
+}
+
+.gamesList {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.columnHeaders {
+  display: grid;
+  grid-template-columns: 120px 200px 200px 120px 80px 150px 1fr;
+  gap: 20px;
+  padding: 15px 20px;
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  font-weight: 600;
+  color: #495057;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.headerDate, .headerMatchup, .headerVenue, .headerScore, .headerResult, .headerDetails {
+  text-align: center;
+}
+
+.headerWeather {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.loadMoreSection {
+  text-align: center;
+  margin-bottom: 20px;
+  padding: 20px;
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+}
+
+.loadMoreBtn {
+  padding: 12px 24px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-bottom: 10px;
+}
+
+.loadMoreBtn:hover:not(:disabled) {
+  background: #0056b3;
+}
+
+.loadMoreBtn:disabled {
+  background: #6c757d;
+  cursor: not-allowed;
+}
+
+.gamesInfo {
+  display: block;
+  color: #6c757d;
+  font-size: 14px;
+}
+
+.gameRow {
+  display: grid;
+  grid-template-columns: 120px 200px 200px 120px 80px 180px 1fr;
+  gap: 20px;
+  align-items: center;
+  padding: 20px;
+  background: white;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.gameRow:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.gameDate {
+  font-weight: 600;
+  color: #495057;
+  font-size: 14px;
+}
+
+.gameMatchup {
+  font-weight: 600;
+  color: #212529;
+  font-size: 16px;
+}
+
+.gameVenue {
+  color: #6c757d;
+  font-size: 14px;
+}
+
+.gameScore {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 18px;
+  justify-content: center;
+}
+
+.dodgersScore {
+  color: #007bff;
+}
+
+.scoreSeparator {
+  color: #6c757d;
+  font-weight: 400;
+}
+
+.tbd {
+  color: #6c757d;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.gameResult {
+  display: flex;
+  justify-content: center;
+}
+
+.gameWeather {
+  color: #6c757d;
+  font-size: 16px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-weight: 500;
+}
+
+.gameWeather:hover {
+  color: #495057;
+  cursor: help;
+}
+
+.resultBadge {
+  padding: 6px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  min-width: 40px;
+  text-align: center;
+}
+
+.win {
+  background: #d4edda;
+  color: #155724;
+}
+
+.loss {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+.tbd {
+  background: #f8f9fa;
+  color: #6c757d;
+}
+
+.gameDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 12px;
+  color: #6c757d;
+}
+
+.attendance {
+  font-weight: 500;
+}
+
+.duration {
+  font-family: 'Courier New', monospace;
+}
+
+.extraInnings {
+  color: #dc3545;
+  font-weight: 600;
+}
+
+.loading, .error, .noGames {
+  text-align: center;
+  padding: 60px 20px;
+  font-size: 18px;
+  color: #6c757d;
+}
+
+.error {
+  color: #dc3545;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .gameRow {
+    grid-template-columns: 100px 180px 180px 100px 70px 160px 1fr;
+    gap: 15px;
+    padding: 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 15px;
+  }
+  
+  .header h1 {
+    font-size: 2rem;
+  }
+  
+  .filters {
+    gap: 8px;
+  }
+  
+  .filterBtn {
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+  
+  .gameRow {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    text-align: center;
+  }
+  
+  .gameDate, .gameMatchup, .gameVenue, .gameScore, .gameResult, .gameWeather, .gameDetails {
+    justify-self: center;
+  }
+  
+  .gameDetails {
+    flex-direction: row;
+    justify-content: center;
+    gap: 15px;
+  }
+}
+
+.buttonGroup {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.syncButton {
+  background: #28a745;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.syncButton:hover:not(:disabled) {
+  background: #218838;
+}
+
+.syncButton:disabled {
+  background: #6c757d;
+  cursor: not-allowed;
+}
+
+.weatherButton {
+  background: #17a2b8;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.weatherButton:hover:not(:disabled) {
+  background: #138496;
+}
+
+.weatherButton:disabled {
+  background: #6c757d;
+  cursor: not-allowed;
+}
