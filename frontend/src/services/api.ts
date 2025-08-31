@@ -62,6 +62,18 @@ export const playerService = {
     const response = await api.get('/api/v1/roster-sync-status');
     return response.data;
   },
+
+  // Get player game log
+  getPlayerGameLog: async (playerId: number): Promise<any> => {
+    const response = await api.get(`/api/v1/players/${playerId}/game-log`);
+    return response.data;
+  },
+
+  // Sync player game log from ESPN
+  syncPlayerGameLog: async (playerId: number): Promise<any> => {
+    const response = await api.post(`/api/v1/players/${playerId}/sync-game-log`);
+    return response.data;
+  },
 };
 
 export const healthService = {

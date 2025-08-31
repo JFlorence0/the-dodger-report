@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Player } from '../types/Player';
 import { playerService } from '../services/api';
+import PlayerGameLog from '../components/PlayerGameLog';
+import PlayerAnalytics from '../components/PlayerAnalytics';
 import styles from './PlayerDetail.module.css';
 
 const PlayerDetail: React.FC = () => {
@@ -116,31 +118,18 @@ const PlayerDetail: React.FC = () => {
 
       {/* Main Content */}
       <div className={styles.content}>
-        <div className={styles.mainSection}>
-          {/* Placeholder for future analytics content */}
-          <div className={styles.placeholder}>
-            <h2>Player Analytics & Performance</h2>
-            <p>This area will contain detailed statistics, performance metrics, game history, and advanced analytics.</p>
-            <div className={styles.placeholderGrid}>
-              <div className={styles.placeholderCard}>
-                <h3>Season Stats</h3>
-                <p>Batting average, home runs, RBIs, etc.</p>
-              </div>
-              <div className={styles.placeholderCard}>
-                <h3>Game History</h3>
-                <p>Recent games, performance trends</p>
-              </div>
-              <div className={styles.placeholderCard}>
-                <h3>Advanced Metrics</h3>
-                <p>OPS+, WAR, defensive metrics</p>
-              </div>
-              <div className={styles.placeholderCard}>
-                <h3>Comparison</h3>
-                <p>League rankings, team comparisons</p>
-              </div>
-            </div>
-          </div>
-        </div>
+        {/* Player Analytics Dashboard */}
+        <PlayerAnalytics 
+          playerId={player.id} 
+          playerName={player.name}
+        />
+
+        {/* Player Game Log */}
+        <PlayerGameLog 
+          playerId={player.id} 
+          playerName={player.name} 
+          season={2025}
+        />
 
 
       </div>

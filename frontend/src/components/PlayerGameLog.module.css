@@ -1,0 +1,149 @@
+.playerGameLog {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 20px 0;
+  overflow: hidden;
+}
+
+.header {
+  background: linear-gradient(135deg, #005a9c 0%, #1e3a8a 100%);
+  color: white;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header h3 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.syncButton {
+  background: #10b981;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.syncButton:hover {
+  background: #059669;
+}
+
+.gameCount {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.loading {
+  text-align: center;
+  padding: 40px;
+  color: #6b7280;
+  font-size: 1.1rem;
+}
+
+.error {
+  text-align: center;
+  padding: 40px;
+  color: #dc2626;
+}
+
+.error p {
+  margin-bottom: 15px;
+  font-size: 1.1rem;
+}
+
+.noData {
+  text-align: center;
+  padding: 40px;
+  color: #6b7280;
+}
+
+.noData p {
+  font-size: 1.1rem;
+}
+
+.tableContainer {
+  overflow-x: auto;
+  padding: 20px;
+}
+
+.gameLogTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.gameLogTable th {
+  background: #f8fafc;
+  color: #374151;
+  font-weight: 600;
+  text-align: center;
+  padding: 12px 8px;
+  border-bottom: 2px solid #e5e7eb;
+  white-space: nowrap;
+}
+
+.gameLogTable td {
+  padding: 10px 8px;
+  text-align: center;
+  border-bottom: 1px solid #f3f4f6;
+  white-space: nowrap;
+}
+
+.gameLogTable tbody tr:hover {
+  background: #f9fafb;
+}
+
+.gameRow:nth-child(even) {
+  background: #fafafa;
+}
+
+.win {
+  color: #059669;
+  font-weight: 600;
+}
+
+.loss {
+  color: #dc2626;
+  font-weight: 600;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+  
+  .controls {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .tableContainer {
+    padding: 10px;
+  }
+  
+  .gameLogTable {
+    font-size: 0.8rem;
+  }
+  
+  .gameLogTable th,
+  .gameLogTable td {
+    padding: 8px 4px;
+  }
+}

@@ -8,6 +8,8 @@ from ..db.models import Game, GameResult
 from ..db.schemas import Game as GameSchema, GameResult as GameResultSchema
 from ..services.game_service import GameService
 from ..services.stadium_service import StadiumService
+from ..services.box_score_service import BoxScoreService
+from ..services.player_game_service import PlayerGameService
 
 router = APIRouter(tags=["games"])
 
@@ -172,6 +174,19 @@ async def debug_espn_scoreboard(db: Session = Depends(get_db)):
     game_service = GameService(db)
     return game_service.debug_espn_scoreboard()
 
+@router.get("/games/debug/espn-box-score/{espn_id}", summary="Debug ESPN Box Score Data")
+async def debug_espn_box_score(
+    espn_id: str,
+    db: Session = Depends(get_db)
+):
+    """
+    Debug endpoint to inspect what ESPN box score API is sending us.
+    This helps identify the correct data structure for player stats.
+    """
+    box_score_service = BoxScoreService(db)
+    raw_data = box_score_service.fetch_game_box_score(espn_id)
+    return raw_data
+
 @router.post("/games/seed-stadiums", summary="Seed MLB Stadiums")
 async def seed_stadiums(db: Session = Depends(get_db)):
     """
@@ -181,3 +196,91 @@ async def seed_stadiums(db: Session = Depends(get_db)):
     stadium_service = StadiumService(db)
     result = stadium_service.seed_mlb_stadiums()
     return result
+
+@router.post("/games/{espn_id}/sync-player-stats", summary="Sync Player Statistics for Game")
+async def sync_game_player_stats(
+    espn_id: str,
+    db: Session = Depends(get_db)
+):
+    """
+    Sync player statistics for a specific game from ESPN box score data.
+    This will fetch batting, pitching, and fielding stats for all players.
+    
+    - **espn_id**: ESPN's event ID for the game
+    """
+    box_score_service = BoxScoreService(db)
+    result = box_score_service.sync_game_player_stats(espn_id)
+    
+    if not result["synced"]:
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=result["reason"]
+        )
+    
+    return result
+
+@router.get("/games/{espn_id}/player-stats", summary="Get Player Statistics for Game")
+async def get_game_player_stats(
+    espn_id: str,
+    db: Session = Depends(get_db)
+):
+    """
+    Get all player statistics for a specific game.
+    
+    - **espn_id**: ESPN's event ID for the game
+    """
+    box_score_service = BoxScoreService(db)
+    game = box_score_service.db.query(Game).filter(Game.espn_id == espn_id).first()
+    
+    if not game:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f"Game with ESPN ID {espn_id} not found"
+        )
+    
+    player_stats = box_score_service.get_player_game_stats(game.id)
+    return player_stats
+
+@router.get("/players/{player_id}/season-stats", summary="Get Player Season Statistics")
+async def get_player_season_stats(
+    player_id: int,
+    season: int = 2025,
+    db: Session = Depends(get_db)
+):
+    """
+    Get aggregated season statistics for a specific player.
+    
+    - **player_id**: Player's ID in our database
+    - **season**: Season year (default: 2025)
+    """
+    box_score_service = BoxScoreService(db)
+    stats = box_score_service.get_player_season_stats(player_id, season)
+    return stats
+
+@router.post("/players/{player_id}/sync-game-log", summary="Sync Player Game Log from ESPN")
+async def sync_player_game_log(
+    player_id: int,
+    db: Session = Depends(get_db)
+):
+    """
+    Sync complete game log for a player from ESPN player page.
+    This will scrape all games for the current season.
+    
+    - **player_id**: Player's ID in our database
+    """
+    player_game_service = PlayerGameService(db)
+    result = player_game_service.sync_player_season_stats(player_id)
+    return result
+
+@router.get("/players/{player_id}/game-log", summary="Get Player Game Log Data")
+async def get_player_game_log(
+    player_id: int,
+    db: Session = Depends(get_db)
+):
+    """
+    Get player game log data and season summary.
+    
+    - **player_id**: Player's ID in our database
+    """
+    player_game_service = PlayerGameService(db)
+    return player_game_service.get_player_season_summary(player_id)
