@@ -1,0 +1,54 @@
+services:
+  # FastAPI Backend
+  dodger-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: dodger-report-api
+    ports:
+      - "8000:8000"
+    environment:
+      - PYTHONPATH=/app
+      - DATABASE_URL=sqlite:///./dodgers.db
+    volumes:
+      # Mount the backend directory for development (hot reload)
+      - ./backend:/app
+      # Persist database between container restarts
+      - dodger-data:/app
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - dodger-network
+
+  # React Frontend
+  dodger-frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: dodger-report-frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - REACT_APP_API_URL=http://localhost:8000
+    volumes:
+      # Mount the frontend directory for development (hot reload)
+      - ./frontend:/app
+      - /app/node_modules
+    depends_on:
+      - dodger-api
+    restart: unless-stopped
+    networks:
+      - dodger-network
+
+volumes:
+  dodger-data:
+    driver: local
+
+networks:
+  dodger-network:
+    driver: bridge
